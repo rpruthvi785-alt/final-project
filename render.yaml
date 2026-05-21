@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: travel-tracker
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false          # You enter this in Render dashboard
+      - key: JWT_SECRET
+        sync: false          # You enter this in Render dashboard
+      - key: PORT
+        value: 10000
