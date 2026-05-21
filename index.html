@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Tracker</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+    }
+    .container { text-align: center; padding: 40px 20px; max-width: 800px; }
+    .badge {
+      display: inline-block;
+      background: rgba(139,92,246,0.2);
+      border: 1px solid rgba(139,92,246,0.4);
+      color: #a78bfa;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 999px; margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1;
+      margin-bottom: 20px;
+    }
+    h1 span { color: #38bdf8; }
+    p.sub {
+      color: #94a3b8; font-size: 1.1rem; margin-bottom: 48px; line-height: 1.7;
+    }
+    .cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; margin-bottom: 48px;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 24px 16px;
+    }
+    .card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .card p { font-size: 0.8rem; color: #64748b; }
+    .card .port {
+      display: inline-block; margin-top: 10px;
+      background: rgba(56,189,248,0.15); color: #38bdf8;
+      font-size: 0.75rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 999px;
+    }
+    .buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .btn {
+      padding: 14px 28px; border-radius: 12px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #0ea5e9);
+      color: white; box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #e2e8f0;
+    }
+    .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    .run-box {
+      background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 24px 28px; text-align: left;
+    }
+    .run-box h4 { color: #a78bfa; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+    .run-box code {
+      display: block; color: #4ade80;
+      font-family: 'Courier New', monospace; font-size: 0.9rem;
+      margin: 6px 0; padding-left: 16px;
+    }
+    .run-box code::before { content: '$ '; color: #475569; }
+    footer { margin-top: 40px; color: #334155; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">🌍 Full-Stack Travel Platform</div>
+    <h1>Travel <span>Tracker</span></h1>
+    <p class="sub">
+      Discover expeditions, book adventures, and connect with a global community of explorers.<br/>
+      Built with Node.js · React · MongoDB Atlas · Vite
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">⚙️</div>
+        <h3>Backend API</h3>
+        <p>Express · MongoDB · JWT · Socket.io</p>
+        <span class="port">Port 5001</span>
+      </div>
+      <div class="card">
+        <div class="icon">🗺️</div>
+        <h3>Client App</h3>
+        <p>React · Vite · Tailwind · Framer Motion</p>
+        <span class="port">Port 5173</span>
+      </div>
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h3>Admin Dashboard</h3>
+        <p>React · Redux Toolkit · Recharts</p>
+        <span class="port">Port 5174</span>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a href="https://github.com/prjcttravel-alt/TRAVEL-TRACKER" class="btn btn-primary">
+        ⭐ View Source Code
+      </a>
+      <a href="https://github.com/prjcttravel-alt/TRAVEL-TRACKER#readme" class="btn btn-secondary">
+        📖 README
+      </a>
+    </div>
+
+    <div class="run-box">
+      <h4>Run Locally in VS Code</h4>
+      <code>git clone https://github.com/prjcttravel-alt/TRAVEL-TRACKER.git</code>
+      <code>cd TRAVEL-TRACKER</code>
+      <code>cp server/.env.example server/.env &nbsp; # add your MongoDB URI</code>
+      <code>node dev.js</code>
+    </div>
+
+    <footer>© 2025 Travel Trackers · Admin login at /admin-dashboard/login</footer>
+  </div>
+</body>
+</html>
