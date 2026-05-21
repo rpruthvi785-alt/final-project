@@ -1,0 +1,124 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🚀 Start All Services",
+      "type": "shell",
+      "command": "node dev.js",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": false,
+        "showReuseMessage": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "📦 Install All Dependencies",
+      "type": "shell",
+      "command": "npm install --prefix server --legacy-peer-deps && npm install --prefix client --legacy-peer-deps && npm install --prefix admin-dashboard --legacy-peer-deps",
+      "windows": {
+        "command": "npm install --prefix server --legacy-peer-deps ; npm install --prefix client --legacy-peer-deps ; npm install --prefix admin-dashboard --legacy-peer-deps"
+      },
+      "problemMatcher": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": false,
+        "showReuseMessage": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "🟢 Start Backend Only (port 5001)",
+      "type": "shell",
+      "command": "npm run dev",
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "servers",
+        "close": false,
+        "showReuseMessage": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/server"
+      }
+    },
+    {
+      "label": "🔵 Start Client Only (port 5173)",
+      "type": "shell",
+      "command": "npm run dev",
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "servers",
+        "close": false,
+        "showReuseMessage": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/client"
+      }
+    },
+    {
+      "label": "🟡 Start Admin Dashboard Only (port 5174)",
+      "type": "shell",
+      "command": "npm run dev",
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "servers",
+        "close": false,
+        "showReuseMessage": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/admin-dashboard"
+      }
+    },
+    {
+      "label": "🔨 Build Client (Production)",
+      "type": "shell",
+      "command": "npm run build",
+      "problemMatcher": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/client"
+      }
+    },
+    {
+      "label": "🔨 Build Admin Dashboard (Production)",
+      "type": "shell",
+      "command": "npm run build",
+      "problemMatcher": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/admin-dashboard"
+      }
+    }
+  ]
+}

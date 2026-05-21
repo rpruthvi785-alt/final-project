@@ -1,0 +1,60 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "🟢 Debug Backend Server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}/server",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "restart": true
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "🔵 Debug Client App (Chrome)",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "🟡 Debug Admin Dashboard (Chrome)",
+      "url": "http://localhost:5174/admin-dashboard/",
+      "webRoot": "${workspaceFolder}/admin-dashboard/src"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "🚀 Start All Services (dev.js)",
+      "program": "${workspaceFolder}/dev.js",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🌐 Full Stack Debug (All Services)",
+      "configurations": [
+        "🟢 Debug Backend Server",
+        "🔵 Debug Client App (Chrome)",
+        "🟡 Debug Admin Dashboard (Chrome)"
+      ],
+      "stopAll": true,
+      "presentation": {
+        "hidden": false,
+        "group": "fullstack",
+        "order": 1
+      }
+    }
+  ]
+}

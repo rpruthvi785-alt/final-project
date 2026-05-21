@@ -1,0 +1,94 @@
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const seedDatabase = require('./utils/seed');
+
+const app = express();
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    process.env.CLIENT_URL,
+  ].filter(Boolean),
+  credentials: true,
+}));
+app.use(express.json());
+
+// Request logger for debugging
+app.use((req, res, next) => {
+  console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.url}`);
+  next();
+});
+
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/categories', require('./routes/categories'));
+app.use('/api/events', require('./routes/event.routes'));
+app.use('/api/bookings', require('./routes/bookings'));
+app.use('/api/users', require('./routes/user.routes'));
+app.use('/api/posts', require('./routes/post.routes'));
+app.use('/api/admin', require('./routes/admin.routes'));
+app.use('/api/activities', require('./routes/activity.routes'));
+app.use('/api/community', require('./routes/community.routes'));
+app.use('/api/messages', require('./routes/message.routes'));
+app.use('/api/recommendations', require('./routes/recommendation.routes'));
+app.use('/api/reports', require('./routes/report.routes'));
+app.use('/api/travel', require('./routes/travel.routes'));
+
+const path = require('path');
+
+// Serve Admin Dashboard Static Files
+app.use('/admin-dashboard', express.static(path.join(__dirname, '../admin-dashboard/dist')));
+
+// Handle Admin Dashboard SPA Routing
+app.get('/admin-dashboard*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../admin-dashboard/dist', 'index.html'));
+});
+
+// Serve User Client
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
+});
+
+const startServer = async () => {
+  const PORT = process.env.PORT || 5001;
+
+  // Attach a server-level error handler BEFORE listen so EADDRINUSE
+  // never becomes an unhandled exception that crashes the process.
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`\n❌ Port ${PORT} is already in use.`);
+      console.error(`   Stop the other process, or run:  node dev.js  from the project root`);
+      console.error(`   (dev.js clears ports automatically before starting)\n`);
+    } else {
+      console.error('Server error:', err.message);
+    }
+    process.exit(1);
+  });
+
+  try {
+    await connectDB();
+
+    // Only run seedDatabase if Mongoose is connected
+    const mongoose = require('mongoose');
+    if (mongoose.connection.readyState === 1) {
+      try {
+        await seedDatabase();
+      } catch (seedErr) {
+        console.error('⚠️ Database seeding failed:', seedErr.message);
+      }
+    } else {
+      console.warn('⚠️ Database seeding skipped because mongoose is not connected.');
+    }
+  } catch (error) {
+    console.error('⚠️ Failed to configure database:', error.message);
+  }
+};
+
+startServer();

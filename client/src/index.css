@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Urbanist:wght@300;400;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans selection:bg-primary-sky/30;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-black;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+  }
+  
+  .glass-dark {
+    @apply bg-slate-900/60 backdrop-blur-xl border border-white/5 shadow-2xl;
+  }
+
+  .card-premium {
+    @apply glass rounded-[2.5rem] p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2;
+  }
+
+  .btn-travel {
+    @apply px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all active:scale-95 shadow-xl;
+  }
+
+  .gradient-ocean {
+    @apply bg-gradient-to-br from-primary-ocean to-primary-sky;
+  }
+
+  .gradient-sunset {
+    @apply bg-gradient-to-br from-accent-sunset to-orange-400;
+  }
+
+  .input-field {
+    @apply w-full p-4 rounded-2xl bg-white border border-slate-100 focus:ring-2 focus:ring-primary-ocean focus:border-transparent outline-none transition-all;
+  }
+}
+
+/* Custom Animations */
+@keyframes airplane {
+  0% { transform: translate(-100px, 100px) rotate(-45deg); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translate(100vw, -100vh) rotate(-45deg); opacity: 0; }
+}
+
+.animate-airplane {
+  animation: airplane 20s linear infinite;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-primary-ocean/30 rounded-full hover:bg-primary-ocean/50 transition-colors;
+}
