@@ -3,7 +3,7 @@ import API from './axios';
 export const login = (data) => API.post('/auth/login', data);
 export const signup = (data) => API.post('/auth/register', data);
 export const getProfile = () => API.get('/auth/profile');
-export const updateProfile = (data) => API.put('/auth/profile', data);
+export const updateProfile = (data) => API.put('/users/profile', data);
 
 export const getCategories = () => API.get('/categories');
 export const createCategory = (data) => API.post('/categories', data, {

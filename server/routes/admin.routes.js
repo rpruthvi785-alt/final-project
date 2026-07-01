@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
-const { protect, adminOnly } = require('../middleware/auth');
+const { protect, authorize } = require('../middleware/auth.middleware');
 
 // All admin routes require authentication and admin role
 router.use(protect);
-router.use(adminOnly);
+router.use(authorize('admin'));
 
 // Define API routes for Admin Dashboard
 

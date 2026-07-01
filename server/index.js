@@ -32,7 +32,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/categories', require('./routes/categories'));
 app.use('/api/events', require('./routes/event.routes'));
 app.use('/api/bookings', require('./routes/bookings'));

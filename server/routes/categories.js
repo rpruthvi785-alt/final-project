@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { getCategories, createCategory, updateCategory, deleteCategory } = require('../controllers/categoryController');
-const { protect, adminOnly } = require('../middleware/auth');
+const { protect, authorize } = require('../middleware/auth.middleware');
 const upload = require('../middleware/upload');
 
 const catUpload = upload.fields([
@@ -9,8 +9,8 @@ const catUpload = upload.fields([
 ]);
 
 router.get('/', getCategories);
-router.post('/', protect, adminOnly, catUpload, createCategory);
-router.put('/:id', protect, adminOnly, catUpload, updateCategory);
-router.delete('/:id', protect, adminOnly, deleteCategory);
+router.post('/', protect, authorize('admin'), catUpload, createCategory);
+router.put('/:id', protect, authorize('admin'), catUpload, updateCategory);
+router.delete('/:id', protect, authorize('admin'), deleteCategory);
 
 module.exports = router;

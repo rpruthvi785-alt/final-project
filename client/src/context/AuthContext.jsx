@@ -17,11 +17,20 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       getProfile()
         .then(res => setUser(res.data))
-        .catch(() => localStorage.removeItem('token'))
+        .catch(() => {
+          localStorage.removeItem('token');
+          setUser(null);
+        })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
     }
+
+    const handleAuthError = () => {
+      setUser(null);
+    };
+    window.addEventListener('auth-error', handleAuthError);
+    return () => window.removeEventListener('auth-error', handleAuthError);
   }, []);
 
   return (

@@ -119,10 +119,10 @@ const addReview = async (req, res) => {
     const event = await Event.findById(req.params.id);
     if (!event) return res.status(404).json({ success: false, message: 'Event not found' });
 
-    // Ensure event is completed before allowing reviews
-    if (event.eventStatus?.toLowerCase() !== 'completed') {
-      return res.status(400).json({ success: false, message: 'Cannot review an event that is not completed' });
-    }
+    // Temporarily allow reviewing any event (removed completion check)
+    // if (event.eventStatus?.toLowerCase() !== 'completed') {
+    //   return res.status(400).json({ success: false, message: 'Cannot review an event that is not completed' });
+    // }
 
     // Check if user already reviewed
     const alreadyReviewed = event.reviews.find(r => r.user.toString() === req.user.id);

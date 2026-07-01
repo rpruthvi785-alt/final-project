@@ -31,11 +31,8 @@ export default function Reviews() {
       .then(res => {
         const allEvents = res.data.data || [];
         
-        // 1. Get completed events for the "Add Review" dropdown
-        const completed = allEvents.filter(e => 
-          e.eventStatus?.toLowerCase() === 'completed' || 
-          e.status?.toLowerCase() === 'completed'
-        );
+        // 1. Allow reviewing any event for testing purposes
+        const completed = allEvents;
         setCompletedEvents(completed);
 
         // 2. Extract and flatten all reviews from all events
