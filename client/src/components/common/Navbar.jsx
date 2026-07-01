@@ -34,7 +34,7 @@ export default function Navbar() {
               <Link to="/reviews" className="text-sm font-black uppercase tracking-widest text-slate-500 hover:text-primary-ocean transition-colors">Reviews</Link>
               <Link to="/profile" className="text-sm font-black uppercase tracking-widest text-slate-500 hover:text-primary-ocean transition-colors">Profile</Link>
               {user.role === 'admin' && (
-                <Link to="/admin" className="text-sm font-black uppercase tracking-widest text-indigo-500 hover:text-indigo-400 transition-colors">Admin</Link>
+                <a href="/admin-dashboard/" target="_blank" rel="noopener noreferrer" className="text-sm font-black uppercase tracking-widest text-indigo-500 hover:text-indigo-400 transition-colors">Admin</a>
               )}
             </>
           )}
@@ -82,7 +82,7 @@ export default function Navbar() {
                 <Link onClick={() => setIsOpen(false)} to="/bookings" className="text-xl font-black text-dark-slate">Logbook</Link>
                 <Link onClick={() => setIsOpen(false)} to="/profile" className="text-xl font-black text-dark-slate">Passport</Link>
                 {user.role === 'admin' && (
-                  <Link onClick={() => setIsOpen(false)} to="/admin" className="text-xl font-black text-indigo-500">Admin</Link>
+                  <a href="/admin-dashboard/" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="text-xl font-black text-indigo-500">Admin</a>
                 )}
               </>
             )}
