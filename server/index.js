@@ -48,12 +48,9 @@ app.use('/api/travel', require('./routes/travel.routes'));
 
 const path = require('path');
 
-// Serve Admin Dashboard Static Files
-app.use('/admin-dashboard', express.static(path.join(__dirname, '../admin-dashboard/dist')));
-
-// Handle Admin Dashboard SPA Routing
+// Redirect old Admin Dashboard links to the new internal route
 app.get('/admin-dashboard*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../admin-dashboard/dist', 'index.html'));
+  res.redirect('/admin');
 });
 
 // Serve User Client
