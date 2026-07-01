@@ -63,7 +63,12 @@ export default function Reviews() {
   }, []);
 
   const handleSubmitReview = async () => {
-    if (!newReview.eventId) return toast.error('Please select the expedition you completed');
+    if (!newReview.eventId) {
+      if (completedEvents.length === 0) {
+        return toast.error('No expeditions exist yet! Please launch a trip in the Admin portal first.');
+      }
+      return toast.error('Please select an expedition from the dropdown menu');
+    }
     if (!newReview.review) return toast.error('Please enter your review');
 
     try {
@@ -250,7 +255,7 @@ export default function Reviews() {
                   >
                     <option value="">Choose an expedition...</option>
                     {completedEvents.length === 0 ? (
-                      <option disabled>No completed expeditions found to review</option>
+                      <option disabled>No expeditions exist yet. Please create one!</option>
                     ) : (
                       completedEvents.map(e => (
                         <option key={e._id} value={e._id}>{e.eventTitle} ({e.city})</option>
