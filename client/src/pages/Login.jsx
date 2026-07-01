@@ -20,7 +20,7 @@ export default function Login() {
       const { data } = await login({ email, password });
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
-      setUser(data);
+      setUser(data.user);
       toast.success('Welcome back, Explorer!');
       navigate('/');
     } catch (err) {

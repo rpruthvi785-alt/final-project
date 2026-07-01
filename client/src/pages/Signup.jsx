@@ -19,7 +19,7 @@ export default function Signup() {
       const { data } = await signup(formData);
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
-      setUser(data);
+      setUser(data.user);
       toast.success('Passport Created! Welcome to the Club.');
       navigate('/');
     } catch (err) {
