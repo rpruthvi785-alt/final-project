@@ -25,13 +25,13 @@ const AdminLogin = () => {
       const data = res.data;
 
       // Block non-admin users
-      if (data.role !== 'admin') {
+      if (data.user?.role !== 'admin') {
         setError('Access denied. This portal is for admins only.');
         setLoading(false);
         return;
       }
 
-      dispatch(setCredentials({ user: data, token: data.token }));
+      dispatch(setCredentials({ user: data.user, token: data.token }));
       navigate('/');
     } catch (err) {
       const msg = err.response?.data?.message || 'Login failed. Check your credentials.';
